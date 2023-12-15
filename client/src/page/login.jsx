@@ -21,10 +21,9 @@ export const Login = () => {
     localStorage.setItem('drive_id', res.data.Drive_ID);
     localStorage.setItem('recipient_id', res.data.recipient_id);
     localStorage.setItem('amount_blood', res.data.amount_of_blood)
+    localStorage.setItem('can_edit', res.data.can_edit)
     localStorage.setItem('price', res.data.price)
-    console.log(localStorage.getItem('user'))
-    console.log(localStorage.getItem('price'))
-    console.log(localStorage.getItem('recipient_id'))
+    console.log(localStorage.getItem('can_edit'))
 
     if (res.data.role === "admin") {
       navigate("/admin");
@@ -37,6 +36,11 @@ export const Login = () => {
       document.querySelector(".inactive").classList.add("active");
     }
   };
+
+  const do_func = () => {
+    navigate("/guest");
+  }
+
   return (
     <>
       <form className="form-login">
@@ -64,7 +68,7 @@ export const Login = () => {
           <label className="inactive">Email or password are not correct!</label>
         </div>
       </form>
-      <button name="guest" className="btn-guest">
+      <button name="guest" className="btn-guest" onClick={do_func}>
         Continue Guest
       </button>
       {/* add link to guest !!!!!!!!!!!!!!! */}

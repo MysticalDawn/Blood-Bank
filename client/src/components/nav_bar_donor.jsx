@@ -11,7 +11,7 @@ export const NavBarDonor = () => {
         <Link className="admin-link" to="/donor/search_history">
           Search History
         </Link>
-        <Link className="admin-link" to="/donor/edit_system_user">
+        <Link className="admin-link" to="/donor/edit_info">
           Edit information
         </Link>
         <Link className="admin-link" to="/donor/donate">

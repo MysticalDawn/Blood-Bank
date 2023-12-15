@@ -22,7 +22,10 @@ export const NavBar = () => {
         </Link>
         <Link className="admin-link" to="/admin/begin_blood_drive">
           Initiate Blood Drive
-          </Link>
+        </Link>
+        <Link className="admin-link" to="/admin/edit_info">
+          Allow Edit Info
+        </Link>
         <Link className="admin-link" to="/">
           Logout
         </Link>

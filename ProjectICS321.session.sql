@@ -1,2 +1,1 @@
-ALTER TABLE receives
-DROP COLUMN receive_incident;
+SELECT * FROM recipient

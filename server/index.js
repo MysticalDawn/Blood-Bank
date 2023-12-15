@@ -54,6 +54,7 @@ app.use("/login", (req, res) => {
                 user: result[0].Donor_ID,
                 blood_type: result[0].blood_type,
                 Drive_ID: result[0].Drive_ID,
+                can_edit: result[0].can_edit,
               });
             } else {
               db.query(
@@ -70,6 +71,7 @@ app.use("/login", (req, res) => {
                       blood_type: result[0].blood_type,
                       amount_of_blood: result[0].amount_of_blood,
                       price: result[0].price,
+                      can_edit: result[0].can_edit,
                     });
                   } else {
                     res.send({ role: "unknown", user: null });
@@ -1390,3 +1392,129 @@ app.use("/get_result_4", (req, res) => {
     }
   );
 });
+
+app.use("edit_info_donor", (req, res) => {
+  const { fname, lname, address, bdate, email, password, mass } = req.body;
+  const values = [];
+  const fields = [];
+  if (fname) {
+    values.push(fname);
+    fields.push("fname = ?");
+  }
+  if (lname) {
+    values.push(lname);
+    fields.push("lname = ?");
+  }
+  if (address) {
+    values.push(address);
+    fields.push("address = ?");
+  }
+  if (mass) {
+    values.push(mass);
+    fields.push("mass = ?");
+  }
+  if (bdate) {
+    values.push(bdate);
+    fields.push("bdate = ?");
+  }
+  if (email) {
+    values.push(email);
+    fields.push("email = ?");
+  }
+  if (password) {
+    values.push(password);
+    fields.push("password = ?");
+  }
+  values.push(id);
+  db.query(
+    `UPDATE donor SET ${fields.join(", ")} WHERE Donor_ID = ?`,
+    values,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send("Error");
+      } else {
+        res.send(200);
+      }
+    }
+  );
+});
+
+app.use("edit_info_recipient", (req, res) => {
+  const { fname, lname, address, bdate, email, password, mass } = req.body;
+  const values = [];
+  const fields = [];
+  if (fname) {
+    values.push(fname);
+    fields.push("fname = ?");
+  }
+  if (lname) {
+    values.push(lname);
+    fields.push("lname = ?");
+  }
+  if (address) {
+    values.push(address);
+    fields.push("address = ?");
+  }
+  if (mass) {
+    values.push(mass);
+    fields.push("mass = ?");
+  }
+  if (bdate) {
+    values.push(bdate);
+    fields.push("bdate = ?");
+  }
+  if (email) {
+    values.push(email);
+    fields.push("email = ?");
+  }
+  if (password) {
+    values.push(password);
+    fields.push("password = ?");
+  }
+  values.push(id);
+  db.query(
+    `UPDATE recipient SET ${fields.join(", ")} WHERE Recipient_ID = ?`,
+    values,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send("Error");
+      } else {
+        res.send(200);
+      }
+    }
+  );
+});
+
+app.use("/allow_recipient", (req, res) => {
+  const {id} = req.body
+  db.query(
+    "UPDATE recipient SET can_edit = 'TRUE' WHERE Recipient_ID = ?",
+    [id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send("Error");
+      } else {
+        res.send(200)
+      }
+    }
+  )
+})
+
+app.use("allow_donor", (req, res) => {
+  const {id} = req.body
+  db.query(
+    "UPDATE donor SET can_edit = 'TRUE' WHERE Donor_ID = ?",
+    [id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send("Error");
+      } else {
+        res.send(200)
+      }
+    }
+  )
+})

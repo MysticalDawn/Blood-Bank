@@ -13,6 +13,10 @@ import { Recipient } from "./page/recipient/recipient.jsx";
 import { Search_History_Recipient } from "./page/recipient/search_histroy_recipient.jsx";
 import { Request_Blood } from "./page/recipient/request_blood.jsx";
 import { Confirm_Request } from "./page/recipient/confim_request.jsx";
+import { Edit_Info_Donor } from "./page/donor_page/edit_info.jsx";
+import { Edit_Info_Recipient } from "./page/recipient/edit_info.jsx";
+import { Allow_Edit_Info } from "./page/admin_page/allow_edit_info.jsx";
+import { Guest } from "./page/guest/guest.jsx";
 function App() {
   return (
     <>
@@ -47,6 +51,13 @@ function App() {
             path="/recipient/confirm_request"
             element={<Confirm_Request />}
           />
+          <Route path="/donor/edit_info" element={<Edit_Info_Donor />} />
+          <Route
+            path="/recipient/edit_info_recipient"
+            element={<Edit_Info_Recipient />}
+          />
+          <Route path="/admin/edit_info" element={<Allow_Edit_Info />} />
+          <Route path="/guest" element={<Guest />} />
         </Routes>
       </Router>
     </>
