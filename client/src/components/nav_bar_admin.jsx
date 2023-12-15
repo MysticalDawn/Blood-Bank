@@ -26,6 +26,9 @@ export const NavBar = () => {
         <Link className="admin-link" to="/admin/edit_info">
           Allow Edit Info
         </Link>
+        <Link className="admin-link" to="/admin/send_email">
+          Send Email
+        </Link>
         <Link className="admin-link" to="/">
           Logout
         </Link>

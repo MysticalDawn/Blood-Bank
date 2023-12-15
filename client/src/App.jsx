@@ -17,6 +17,7 @@ import { Edit_Info_Donor } from "./page/donor_page/edit_info.jsx";
 import { Edit_Info_Recipient } from "./page/recipient/edit_info.jsx";
 import { Allow_Edit_Info } from "./page/admin_page/allow_edit_info.jsx";
 import { Guest } from "./page/guest/guest.jsx";
+import { Send_Email } from "./page/admin_page/send_email.jsx";
 function App() {
   return (
     <>
@@ -58,6 +59,7 @@ function App() {
           />
           <Route path="/admin/edit_info" element={<Allow_Edit_Info />} />
           <Route path="/guest" element={<Guest />} />
+          <Route path="/admin/send_email" element={<Send_Email />} />
         </Routes>
       </Router>
     </>
