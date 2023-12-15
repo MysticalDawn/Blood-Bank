@@ -1,0 +1,10 @@
+CREATE PROCEDURE InsertIntoBloodCollectionDrive(IN Drive_Date DATE)
+BEGIN
+    DECLARE last_drive_date DATE;
+    SELECT MAX(drive_date) INTO last_drive_date FROM blood_collection_drive;
+    IF TIMESTAMPDIFF(MONTH, last_drive_date, drive_date) >= 3 THEN
+        INSERT INTO blood_collection_drive(drive_date) VALUES(drive_date);
+    ELSE
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cannot insert this drive date because it is less than 3 months from the last drive date.';
+    END IF;
+END
