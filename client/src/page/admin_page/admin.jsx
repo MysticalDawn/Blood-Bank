@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavBar } from "../../components/nav_bar_admin";
 import axios from "axios";
 export const Admin = () => {
@@ -22,16 +22,25 @@ export const Admin = () => {
     if (res3.status !== 200) {
       alert("error");
     }
+  }
+
+  async function fetchData2() {
     const res4 = await axios.get("http://localhost:3000/get_result_4");
     setResult_4(res4.data);
     if (res4.status !== 200) {
       alert("error");
     }
-    console.log(res4.data);
   }
 
   // Call the function
-  fetchData();
+  // ... your other code ...
+
+  useEffect(() => {
+    fetchData();
+    fetchData2();
+  }, []);
+
+  // ... your other code ...
 
   return (
     <>
@@ -90,11 +99,17 @@ export const Admin = () => {
           <tr>
             <th>Recipient ID</th>
           </tr>
-          {result_4.map((item, index) => (
-            <tr key={index}>
-              <td>{item.Recipient_ID}</td>
+          {Array.isArray(result_4) && result_4.length > 0 ? (
+            result_4.map((item, index) => (
+              <tr key={index}>
+                <td>{item.Recipient_ID}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td>No data available</td>
             </tr>
-          ))}
+          )}
         </table>
       </div>
     </>

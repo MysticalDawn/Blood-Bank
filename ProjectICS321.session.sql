@@ -1,1 +1,1 @@
-SELECT * FROM recipient
+SELECT * FROM blood

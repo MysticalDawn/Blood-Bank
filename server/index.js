@@ -1371,6 +1371,8 @@ app.use("/get_result_3", (req, res) => {
         console.log(err);
         res.send("Error");
       } else {
+        console.log("check here")
+        console.log(result);
         res.send(result);
       }
     }
@@ -1384,10 +1386,8 @@ app.use("/get_result_4", (req, res) => {
       if (err) {
         console.log("HERE");
         console.log(err);
-        res.send(err);
+        res.send(result)
         return;
-      } else {
-        res.send(result);
       }
     }
   );
