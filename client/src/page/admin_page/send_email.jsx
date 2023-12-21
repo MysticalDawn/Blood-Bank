@@ -48,19 +48,17 @@ export const Send_Email = () => {
       </div>
       <div className="container-3">
         <div className="form-edit">
+          <textarea placeholder="Please enter the message you would like to send">
+            
+          </textarea>
+
           <input
             type="text"
             value={id}
             placeholder="Enter ID"
             onChange={(e) => setID(e.target.value)}
           />
-          <inpit
-            type="text"
-            value={message}
-            onChange={(e) => {
-              setMessage(e.target.value);
-            }}
-          ></inpit>
+
           <input
             type="submit"
             value="Submit"

@@ -10,13 +10,16 @@ export const Edit_Info_Donor = () => {
   const [bdate, setBdate] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const id = localStorage.getItem("user");
   const [mass, setmass] = useState("");
+  const [Medical_History, setMedical_History] = useState("");
 
   console.log(edit);
 
   const edit_func = async (e) => {
     e.preventDefault();
     const res = await axios.post("http://localhost:3000/edit_info_donor", {
+      id: id,
       fname: fname,
       lname: lname,
       address: address,
@@ -24,6 +27,7 @@ export const Edit_Info_Donor = () => {
       email: email,
       password: password,
       mass: Number(mass),
+      Medical_History: Medical_History,
     });
     if (res.status === 200) {
       alert("Edit Successful");
@@ -36,7 +40,7 @@ export const Edit_Info_Donor = () => {
     <>
       <NavBarDonor />
       <h1 className="title">Edit Info</h1>
-      {edit === "false" ? (
+      {edit === "FALSE" ? (
         <h1>You are not allowed to edit your information</h1>
       ) : (
         <div className="form-edit-recipient">
@@ -109,6 +113,15 @@ export const Edit_Info_Donor = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></input>
+          <label className="password">Medical History:</label>
+          <input
+            type="text"
+            id="Medical_History-edit"
+            name="Medical_History"
+            required
+            value={Medical_History}
+            onChange={(e) => setMedical_History(e.target.value)}
+            ></input>
           <input
             type="submit"
             value="Submit"

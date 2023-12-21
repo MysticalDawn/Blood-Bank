@@ -25,6 +25,8 @@ export const Allow_Edit_Info = () => {
       console.log("result")
       if(res.status === 200) {
         alert("Edit Successful");
+      } else {
+        alert("Edit Failed");
       }
     }
   };

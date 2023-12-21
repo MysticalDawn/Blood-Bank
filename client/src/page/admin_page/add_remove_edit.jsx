@@ -17,7 +17,7 @@ export const Add_Remove_Edit = () => {
   const [mass, setmass] = useState("");
   const [driveID, setdriveID] = useState("");
   const [amount, setAmount] = useState("");
-  const [MedicalHistory, setMedicalHistory] = useState("");
+  const [MedicalHistory, setMedicalHistory] = useState("None");
   const func_add = () => {
     setOp("add");
     if (
@@ -131,6 +131,9 @@ export const Add_Remove_Edit = () => {
   };
 
   const add = async (e) => {
+    const currentDate = new Date();
+    const minimumDate = new Date();
+    minimumDate.setFullYear(currentDate.getFullYear() - 18);
     e.preventDefault();
     console.log(op, type);
     if (op === "add" && type === "recipient") {
@@ -146,15 +149,26 @@ export const Add_Remove_Edit = () => {
         amount: Number(amount),
         MedicalHistory: MedicalHistory,
       });
-      console.log(res.status);
-      if (res.status === 200) {
+      console.log(res.data === "Email already exists");
+      if (res.data === "Email already exists") {
+        alert("Email already exists");
+      } else if (res.status === 200) {
         alert("Values Inserted");
       } else {
         alert("Error");
       }
     } else if (op === "add" && type === "donor") {
+      console.log(bdate, minimumDate);
+      console.log(MedicalHistory === "")
+      if (MedicalHistory === "") {
+        console.log("it is editing")
+        setMedicalHistory("None");
+        console.log(MedicalHistory)
+      }
       if (mass < 50) {
         alert("weight is too low");
+      } else if (bdate > minimumDate) {
+        alert("age is too low");
       } else {
         const res = await axios.post("http://localhost:3000/add_donor", {
           fname: fname,
@@ -168,7 +182,9 @@ export const Add_Remove_Edit = () => {
           blood_type: blood_type,
           MedicalHistory: MedicalHistory,
         });
-        if (res.status === 200) {
+        if (res.data === "Email already exists") {
+          alert("Email already exists");
+        } else if (res.status === 200) {
           alert("Values Inserted");
         } else {
           alert("Error");

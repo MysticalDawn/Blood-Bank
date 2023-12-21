@@ -17,6 +17,7 @@ export const Request_Blood = () => {
   };
   const price = localStorage.getItem("price");
   console.log(typeof price);
+  console.log(price);
   return (
     <>
       <NavBarRecipient />

@@ -22,8 +22,6 @@ export const Search_History_Donor = () => {
     <>
       <NavBarDonor />
       <h1 className="title">History</h1>
-        <div className="form-add">
-          {/* store the result[0].Recipient_ID and the result[0].MEDICAL_HISTORY in a*/}
           {result && result[0] && (
             <table className="styled-table">
               <thead>
@@ -44,7 +42,6 @@ export const Search_History_Donor = () => {
               </tbody>
             </table>
           )}
-      </div>
     </>
   );
 };

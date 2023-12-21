@@ -17,13 +17,16 @@ export const Donate = () => {
       blood_type: blood_type,
       drive_id: Number(drive_id),
     });
+    console.log("the result is")
     console.log(res);
     if (res.data === "NO") {
       alert("You have already donated within 3 months");
-    } else if(res.data === "history") {
-      alert("Your medical history does not allow you to donate");
+    } else if(res.data === "amount") {
+      alert("You have entered an invalid amount");
     }
-     else if (res.status === 200) {
+     else if (res.data === "history") {
+      alert("Your medical history does not allow you to donate");
+    } else if (res.status === 200) {
       alert("Donation Successful");
     } else {
       alert("Donation Failed");
@@ -33,7 +36,7 @@ export const Donate = () => {
     <>
       <NavBarDonor />
       <h1 className="title">Donate</h1>
-      <form className="form-donate">
+      <form className="form-donate" onSubmit={func_donate}>
         <label htmlFor="donationAmount">
           How much blood are you donating? (in ml)
         </label>
@@ -55,7 +58,12 @@ export const Donate = () => {
             setIncident(e.target.value);
           }}
         />
-        <input type="submit" value="Submit" onClick={func_donate} />
+        <input
+          type="submit"
+          value="Submit"
+          className="btn-submit-3"
+          onClick={func_donate}
+        ></input>
       </form>
     </>
   );

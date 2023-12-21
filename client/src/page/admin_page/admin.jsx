@@ -26,6 +26,7 @@ export const Admin = () => {
 
   async function fetchData2() {
     const res4 = await axios.get("http://localhost:3000/get_result_4");
+    console.log(res4);
     setResult_4(res4.data);
     if (res4.status !== 200) {
       alert("error");
@@ -53,12 +54,18 @@ export const Admin = () => {
             <th>Donor ID</th>
             <th>Blood Type</th>
           </tr>
-          {result_1.map((item, index) => (
-            <tr key={index}>
-              <td>{item.Donor_ID}</td>
-              <td>{item.blood_type}</td>
+          {Array.isArray(result_1) && result_1.length > 0 ? (
+            result_1.map((item, index) => (
+              <tr key={index}>
+                <td>{item.Donor_ID}</td>
+                <td>{item.blood_type}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td>No data available</td>
             </tr>
-          ))}
+          )}
         </table>
       </div>
       <div className="container-5">
@@ -68,12 +75,18 @@ export const Admin = () => {
             <th>Blood Type</th>
             <th>Amount</th>
           </tr>
-          {result_2.map((item, index) => (
-            <tr key={index}>
-              <td>{item.blood_type}</td>
-              <td>{item.q}ml</td>
+          {Array.isArray(result_2) && result_2.length > 0 ? (
+            result_2.map((item, index) => (
+              <tr key={index}>
+                <td>{item.blood_type}</td>
+                <td>{item.q}ml</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td>No data available</td>
             </tr>
-          ))}
+          )}
         </table>
       </div>
       <div className="container-6">
@@ -85,12 +98,18 @@ export const Admin = () => {
             <th>Collection Drive ID</th>
             <th>Total Blood Collected</th>
           </tr>
-          {result_3.map((item, index) => (
-            <tr key={index}>
-              <td>{item.Drive_ID}</td>
-              <td>{item.q}ml</td>
+          {Array.isArray(result_3) && result_3.length > 0 ? (
+            result_3.map((item, index) => (
+              <tr key={index}>
+                <td>{item.Drive_ID}</td>
+                <td>{item.total}ml</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td>No data available</td>
             </tr>
-          ))}
+          )}
         </table>
       </div>
       <div className="container-7">

@@ -1,9 +1,9 @@
 import { NavBarRecipient } from "../../components/nav_bar_recipient";
-import "../../style/recipient_style/edit_info.css"
+import "../../style/recipient_style/edit_info.css";
 import { useState } from "react";
 import axios from "axios";
 export const Edit_Info_Recipient = () => {
-  const edit = localStorage.getItem('can_edit');
+  const edit = localStorage.getItem("can_edit");
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [address, setAddress] = useState("");
@@ -11,12 +11,15 @@ export const Edit_Info_Recipient = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [mass, setmass] = useState("");
+  const [Medical_History, setMedical_History] = useState("");
+  const id = localStorage.getItem("recipient_id");
 
   console.log(edit);
 
   const edit_func = async (e) => {
     e.preventDefault();
     const res = await axios.post("http://localhost:3000/edit_info_recipient", {
+      id: id,
       fname: fname,
       lname: lname,
       address: address,
@@ -108,6 +111,15 @@ export const Edit_Info_Recipient = () => {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+          ></input>
+          <label className="password">Medical History:</label>
+          <input
+            type="text"
+            id="Medical_History-edit"
+            name="Medical_History"
+            required
+            value={Medical_History}
+            onChange={(e) => setMedical_History(e.target.value)}
           ></input>
           <input
             type="submit"

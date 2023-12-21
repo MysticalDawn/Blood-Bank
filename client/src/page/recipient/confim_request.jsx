@@ -3,7 +3,7 @@ import "../../style/recipient_style/confrim_request.css";
 export const Confirm_Request = () => {
     const navigate = useNavigate();
     const comp_func = () => {
-        localStorage.setItem("amount_blood", 0);
+        localStorage.setItem("price", 0);
         navigate("/recipient");
     }
   return (
